@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Proposal</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head> 
+<body>
+    <div class="container">
+        <div>
+            <h1 class="header_text">Can you spend your Valentine's with me, babe? 💖</h1>
+        </div>
+
+        <div class="gif_container">
+            <img src="https://media.tenor.com/XrpkexvFJFoAAAAj/mimibubu.gif" alt="Cute animated illustration">
+        </div>
+
+        <div class="buttons">
+            <button class="btn yes-btn" id="yesButton" onclick="nextPage()">Yes</button>
+            <button class="btn no-btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        </div>
+    </div>
+
+    <!-- Floating Hearts Animation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+                document.body.appendChild(heart);
+            }
+        });
+
+        function nextPage() {
+            window.location.href = "yes.html";
+        }
+
+        function moveButton() {
+            var button = document.getElementById('noButton');
+            var yesButton = document.getElementById('yesButton');
+
+            var buttonWidth = button.offsetWidth;
+            var buttonHeight = button.offsetHeight;
+
+            var maxX = window.innerWidth - buttonWidth - 20; 
+            var maxY = window.innerHeight - buttonHeight - 20;
+
+            var x, y;
+            do {
+                x = Math.random() * maxX;
+                y = Math.random() * maxY;
+            } while (
+                x > yesButton.offsetLeft - 100 && x < yesButton.offsetLeft + yesButton.offsetWidth + 100 &&
+                y > yesButton.offsetTop - 100 && y < yesButton.offsetTop + yesButton.offsetHeight + 100
+            );
+
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+    </script>
+</body> 
+</html>
